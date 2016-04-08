@@ -32,6 +32,6 @@ defmodule Peepchat.Endpoint do
     store: :cookie,
     key: "_peepchat_key",
     signing_salt: "eTK+1WCl"
-
+  plug CORSPlug
   plug Peepchat.Router
 end
