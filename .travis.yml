@@ -1,10 +1,13 @@
 language: elixir
 elixir:
-  - 1.2
+- 1.2
 otp_release:
-  - 18.2
+- 18.2
 sudo: false
 addons:
   postgresql: '9.4'
 before_script:
 - psql -c 'create database peepchat_test;' -U postgres
+deploy:
+  api_key:
+    secure: sWIOKtoKHeauzjFMnq1jir5a5yaCF7xZt5ltGK1HyFBuaYa8V88pDOlL9U1WrH1R19gKfk5Qr22xhoo8rPaEexq+ZaYfRuvJKd/lK+MiJ8PDG3FivMsxz2XOQXI85j23bVK3ed9kMcx6d4JITi/FpV618yCVgDItT9JNmdAnbe3NSLBTbWwLM/Q2Awk66YUv1RdpVn37p2UDsV+SlrmyMm7SHvboQxbuv9lPtEAuOa0m+K3aomHqEpRQpxZT7hMvGcvVZd5HVmk7GfE7rmgJ28B8efV+KzfzuzenvtjGBnoyTO6AMPPkM9m6il/2zXfZgWNAzivzfNHzhZToCyxw1HKtVdAaf9L5t/Ld3N+zJ6Qxd4SCR1LeMbPqR4zje5YOhKjsy+v1q5QfiSvysRc2ufv/a0j54FdeHzwR6XkptYHzrIzBaBtQEXXzYp5Ylk88Kq3HUbBjyQUoQhpS91DNZQLBrKYc5y7ZffDZuTDicWT62eLvo0KJgYsXNgXj1a9lfDZOrBkXysrSVW/OkFethWJ3enYwhZyeVcaPVs8+NmcKf0hu3P7o0eSXdGFCXdpARz2N526SSfn982kkA+yadxzcwB9MZv4HGP7Uo0dY1nRe4IOjCBzHR3YrEbL57oBZ/AaxD1vYA4Ydkpat2K8M5BzqngWELTpAijwRUmqCYNQ=
