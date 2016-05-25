@@ -59,6 +59,11 @@ defmodule Peepchat.RoomControllerTest do
           "links" => %{
             "related" => "http://localhost:4001/api/user/#{user.id}"
           }
+        },
+        "messages" => %{
+          "links" => %{
+            "related" => "http://localhost:4001/api/rooms/#{room.id}/messages"
+          }
         }
       }
     }

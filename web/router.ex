@@ -26,7 +26,12 @@ defmodule Peepchat.Router do
     get "/user/current", UserController, :current, as: :current_user
     resources "user", UserController, only: [:show, :index] do
       get "rooms", RoomController, :index, as: :rooms
+      get "messages", MessageController, :index, as: :messages
     end
-    resources "rooms", RoomController, except: [:new, :edit]
+    resources "messages", MessageController, only: [:index, :show, :update, :delete, :create]
+    resources "rooms", RoomController, except: [:new, :edit] do
+      get "messages", MessageController, :index, as: :messages
+      post "messages", MessageController, :create, as: :messages
+    end
   end
 end
