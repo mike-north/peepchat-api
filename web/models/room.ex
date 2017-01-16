@@ -5,15 +5,16 @@ defmodule Peepchat.Room do
     field :name, :string
     belongs_to :owner, Peepchat.Owner
 
-    timestamps
+    timestamps()
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w()
+  @allowed_fields ~w(name)a
+  @required_fields @allowed_fields
 
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @allowed_fields)
+    |> validate_required(@required_fields)
     |> validate_length(:name, min: 4)
     |> unique_constraint(:name)
   end

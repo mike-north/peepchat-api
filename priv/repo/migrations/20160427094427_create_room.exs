@@ -6,7 +6,7 @@ defmodule Peepchat.Repo.Migrations.CreateRoom do
       add :name, :string
       add :owner_id, references(:users, on_delete: :nothing)
 
-      timestamps
+      timestamps()
     end
     create index(:rooms, [:owner_id])
     # Unique room names across the whole app
