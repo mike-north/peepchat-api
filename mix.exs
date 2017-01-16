@@ -9,8 +9,8 @@ defmodule Peepchat.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     aliases: aliases,
-     deps: deps]
+     aliases: aliases(),
+     deps: deps()]
   end
 
   # Configuration for the OTP application.
@@ -18,8 +18,7 @@ defmodule Peepchat.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Peepchat, []},
-     applications: [:phoenix, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+     extra_applications: [:logger]]
   end
 
   # Specifies which paths to compile per environment.
@@ -30,14 +29,15 @@ defmodule Peepchat.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.2"},
-     {:phoenix_ecto, "~> 2.0"},
-     {:postgrex, ">= 0.0.0"},
-     {:gettext, "~> 0.9"},
+    [{:phoenix, "~> 1.2.1"},
+     {:phoenix_pubsub, "~> 1.0"},
+     {:phoenix_ecto, "~> 3.2"},
+     {:postgrex, "~> 0.13.0"},
+     {:gettext, "~> 0.13.0"},
      {:cors_plug, "~> 1.1"},
-     {:ja_serializer, "~> 0.8.1"},
-     {:comeonin, "~> 2.4"},
-     {:guardian, "~> 0.10.0"},
+     {:ja_serializer, "~> 0.11.2"},
+     {:comeonin, "~> 3.0"},
+     {:guardian, "~> 0.14.2"},
      {:cowboy, "~> 1.0"}]
   end
 
@@ -49,6 +49,7 @@ defmodule Peepchat.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

@@ -5,10 +5,11 @@
 # is restricted to this project.
 use Mix.Config
 
+config :peepchat, ecto_repos: [Peepchat.Repo]
+
 # Configures the endpoint
 config :peepchat, Peepchat.Endpoint,
   url: [host: "localhost"],
-  root: Path.dirname(__DIR__),
   secret_key_base: "r2b1lavt+reNjfUGoW9perbSZ/KggUoM+qqkLwRHtV8gqYBmwLTFejvBuLbUKe1Y",
   render_errors: [accepts: ~w(json)],
   pubsub: [name: Peepchat.PubSub,
@@ -22,7 +23,7 @@ config :logger, :console,
 config :phoenix, :format_encoders,
   "json-api": Poison
 
-config :plug, :mimes, %{
+config :mime, :types, %{
   "application/vnd.api+json" => ["json-api"]
 }
 

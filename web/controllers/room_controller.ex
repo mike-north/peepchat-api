@@ -11,12 +11,12 @@ defmodule Peepchat.RoomController do
     |> where(owner_id: ^user_id)
     |> Repo.all
     
-    render(conn, "index.json", data: rooms)
+    render(conn, "index.json-api", data: rooms)
   end
 
   def index(conn, _params) do
     rooms = Repo.all(Room)
-    render(conn, "index.json", data: rooms)
+    render(conn, "index.json-api", data: rooms)
   end
 
   def create(conn, %{"data" => %{"type" => "rooms", "attributes" => room_params, "relationships" => _}}) do
@@ -30,7 +30,7 @@ defmodule Peepchat.RoomController do
         conn
         |> put_status(:created)
         |> put_resp_header("location", room_path(conn, :show, room))
-        |> render("show.json", data: room)
+        |> render("show.json-api", data: room)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -40,7 +40,7 @@ defmodule Peepchat.RoomController do
 
   def show(conn, %{"id" => id}) do
     room = Repo.get!(Room, id)
-    render(conn, "show.json", data: room)
+    render(conn, "show.json-api", data: room)
   end
 
   def update(conn, %{"id" => id, "data" => %{"id" => _, "type" => "rooms", "attributes" => room_params}}) do
@@ -54,7 +54,7 @@ defmodule Peepchat.RoomController do
 
     case Repo.update(changeset) do
       {:ok, room} ->
-        render(conn, "show.json", data: room)
+        render(conn, "show.json-api", data: room)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

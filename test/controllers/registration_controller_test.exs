@@ -25,7 +25,7 @@ defmodule Peepchat.RegistrationControllerTest do
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     assert_error_sent 400, fn ->
-      conn = post conn, registration_path(conn, :create),  %{data: %{type: "user",
+      post conn, registration_path(conn, :create),  %{data: %{type: "user",
         attributes: @invalid_attrs
       }}
     end
